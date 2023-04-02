@@ -35,15 +35,16 @@ const toggleFocus = (value: boolean) => {
     <span v-if="label" class="the-input__label">{{ label }}</span>
 
     <div
-      class="flex overflow-hidden rounded-md border-2 border-stone-300 hover:border-black shadow min-h-10 transition-colors"
+      class="flex overflow-hidden rounded-md border-2 bg-dark-200 border-dark-100 hover:border-dark-50 shadow min-h-10 transition-colors text-white"
       :class="isFocused ? '!border-lime' : ''"
     >
       <div v-if="icon" class="w-5 h-5" :class="icon"></div>
       <input
-        class="the-input__input flex-grow focus:outline-none focus:border-none px-3"
+        class="the-input__input flex-grow focus:outline-none focus:border-none px-3 bg-transparent placeholder-stone-400"
         :type="type"
         :name="name"
         :value="modelValue"
+        :placeholder="placeholder"
         @input="handleInput"
         @focus="toggleFocus(true)"
         @blur="toggleFocus(false)"

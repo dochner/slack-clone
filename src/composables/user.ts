@@ -14,7 +14,10 @@ export const useUser = () => {
 
       if (error) throw error;
 
-      userRoles.value = data as unknown as UserRole[];
+      userRoles.value = (data as unknown as UserRole[]).reduce(
+        (acc, curr) => acc.concat(curr.role),
+        []
+      );
 
       return data;
     } catch (error) {

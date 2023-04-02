@@ -49,30 +49,11 @@ export const useAuth = () => {
     }
   };
 
-  const {
-    data: { subscription: authListener },
-  } = supabase.auth.onAuthStateChange(async (event, newSession) => {
-    if (newSession) {
-      session.value = newSession;
-    }
-
-    const currentUser = session.value?.user;
-    user.value = currentUser;
-
-    if (currentUser) {
-      getUserRoles();
-      router.push({ path: "/channels/[id]", params: { id: 1 } });
-    }
-  });
-
-  onBeforeUnmount(() => {
-    authListener.unsubscribe();
-  });
-
   return {
     logout,
     signIn,
     signUp,
+    session,
     isAuthenticated: computed(() => !!user.value),
   };
 };

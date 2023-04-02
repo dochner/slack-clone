@@ -1,9 +1,10 @@
 <script setup lang="ts">
-const { user, userRoles } = useUser();
+const { user, userRoles, getUserRoles } = useUser();
 const { getChannels } = useChannel();
 const { channelsList } = useChat();
 
 onBeforeMount(() => {
+  getUserRoles();
   getChannels();
 });
 </script>
@@ -38,7 +39,7 @@ onBeforeMount(() => {
             :key="index"
             :channel="channel"
             :user="user"
-            :userRoles="userRoles"
+            :user-roles="userRoles"
           />
         </ul>
       </div>

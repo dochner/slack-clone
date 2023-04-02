@@ -61,6 +61,8 @@ export const useChannel = () => {
         .order("inserted_at", { ascending: true });
 
       if (error) throw error;
+
+      messages.value = data;
       return data;
     } catch (error) {
       // TODO: remove console log
